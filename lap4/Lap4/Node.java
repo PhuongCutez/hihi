@@ -1,33 +1,35 @@
-package lap2_3k21;
+package Lap4;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node implements Comparable<Node> {
+public class Node {
 	private String label;
-	private Node parent; // for printing the path from the start node to goal node
-	private double pathCost;// from the root node to this node
-	private int depth;// used for compute the depth of a node in a tree search
+	private Node parent; // for print the path from the start node to goal node
+	private double g;// from Start to this node
+	private double h;// from this node to the goal
 	private List<Edge> children = new ArrayList<Edge>();
 
 	public Node(String label) {
 		this.label = label;
 	}
 
-	public Node(String label, int h) {
+	public Node(String label, double h) {
+		super();
 		this.label = label;
+		this.h = h;
+	}
+
+	public double getG() {
+		return g;
+	}
+
+	public void setG(double g) {
+		this.g = g;
 	}
 
 	public String getLabel() {
 		return label;
-	}
-
-	public int getDepth() {
-		return depth;
-	}
-
-	public void setDepth(int depth) {
-		this.depth = depth;
 	}
 
 	public Node getParent() {
@@ -62,12 +64,12 @@ public class Node implements Comparable<Node> {
 		this.children.add(edge);
 	}
 
-	public double getPathCost() {
-		return pathCost;
+	public double getH() {
+		return h;
 	}
 
-	public void setPathCost(double pathCost) {
-		this.pathCost = pathCost;
+	public void setH(double h) {
+		this.h = h;
 	}
 
 	@Override
@@ -82,7 +84,9 @@ public class Node implements Comparable<Node> {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null || getClass() != obj.getClass())
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
 			return false;
 		Node other = (Node) obj;
 		if (label == null) {
@@ -95,12 +99,6 @@ public class Node implements Comparable<Node> {
 
 	@Override
 	public String toString() {
-		return this.label+this.pathCost;
-//		return this.label + "_" + this.parent.getLabel() + " " + this.pathCost;
-	}
-
-	@Override
-	public int compareTo(Node o) {
-		return this.label.compareTo(o.label);
+		return this.label;
 	}
 }

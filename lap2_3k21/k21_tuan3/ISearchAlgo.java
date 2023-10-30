@@ -1,4 +1,4 @@
-package lap2_3k21;
+package lap2_3k21.k21_tuan3;
 
 public interface ISearchAlgo {
 	public Node execute(Node root, String goal);// find the path from root node to the goal node
